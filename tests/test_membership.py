@@ -162,6 +162,7 @@ class TestRequirement7:
         assert manager.add_feature("NonExistent") is False
 
 
+# pylint: disable=R0903
 class TestIntegration:
     """Full integration test."""
 
