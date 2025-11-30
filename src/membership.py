@@ -63,12 +63,21 @@ class MembershipManager:
 
     def has_premium(self):
         """Check if any selected feature is considered premium."""
-        premium_keywords = ["Training", "Exclusive", "Specialized"]
+        premium_features = ["Training", "Exclusive", "Specialized"]
+
         for feature in self.features:
-            if any(keyword.lower() in feature['name'].lower()
-                for keyword in premium_keywords):
+            name = feature["name"]
+
+            # NO contar "Personal Training" como premium
+            if name == "Personal Training":
+                continue
+
+            # Coincidencia exacta o parcial
+            if any(keyword == name or keyword in name for keyword in premium_features):
                 return True
+
         return False
+
 
 
     def calculate_total(self):
