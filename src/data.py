@@ -1,3 +1,4 @@
+"""Module containing membership plans and additional features data."""
 
 MEMBERSHIP_PLANS = {
     "Basic": {"cost": 50, "available": True},
@@ -13,8 +14,10 @@ ADDITIONAL_FEATURES = {
 
 
 def get_plan(name):
+    """Return membership plan information by name."""
     return MEMBERSHIP_PLANS.get(name)
 
 
 def get_feature(name):
+    """Return additional feature information by name."""
     return ADDITIONAL_FEATURES.get(name)
