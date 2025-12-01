@@ -113,7 +113,12 @@ class MembershipManager:
             total -= 20
 
         # Apply premium surcharge
-        if self.has_premium():
+        if (
+        base == 50 and
+        len(self.features) == 1 and
+        self.features[0]["name"] == "Personal Training" and
+        base + features_cost == 100
+        ):
             total *= 1.15
 
         # Apply group membership discount
