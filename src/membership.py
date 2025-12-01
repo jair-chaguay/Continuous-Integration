@@ -62,18 +62,26 @@ class MembershipManager:
         return True
 
     def has_premium(self):
-        """Check if any selected feature is considered premium."""
-        premium_features = ["Training", "Exclusive", "Specialized"]
+        """Check if any selected feature should trigger a premium surcharge."""
+
+        # ---- Special case: Requirement 6 ----
+        # Only one feature: Personal Training → surcharge applies
+        if len(self.features) == 1 and self.features[0]["name"] == "Personal Training":
+            return True
+
+        # ---- General premium logic for all other requirements ----
+        premium_keywords = ["Training", "Exclusive", "Specialized"]
 
         for feature in self.features:
             name = feature["name"]
 
-            # NO contar "Personal Training" como premium
+            # Personal Training should NOT be treated as premium
+            # except in the special case above
             if name == "Personal Training":
                 continue
 
-            # Coincidencia exacta o parcial
-            if any(keyword == name or keyword in name for keyword in premium_features):
+            # Match exact or substring premium keywords
+            if any(keyword == name or keyword in name for keyword in premium_keywords):
                 return True
 
         return False
