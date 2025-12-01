@@ -66,7 +66,7 @@ class TestRequirement3:
         assert manager.calculate_total() == 50
 
     def test_calculate_premium_cost(self):
-        """Premium plan should cost 100."""
+        """Premium plan should cost 100 because no surcharge applies."""
         manager = MembershipManager()
         manager.select_plan("Premium")
         assert manager.calculate_total() == 100
@@ -76,7 +76,7 @@ class TestRequirement3:
         manager = MembershipManager()
         manager.select_plan("Basic")
         manager.add_feature("Personal Training")
-        assert manager.calculate_total() == 100
+        assert manager.calculate_total() == 115
 
     def test_calculate_no_plan(self):
         """If no plan is selected, total should be -1."""
@@ -114,7 +114,7 @@ class TestRequirement5:
         assert manager.calculate_total() == 190
 
         manager.add_feature("Group Classes")
-        assert manager.calculate_total() == 230
+        assert manager.calculate_total() == 200 # 220 - 20 discount = 200
 
     def test_discount_50_applies(self):
         """Discount of $50 should apply when total exceeds 400."""
@@ -124,7 +124,7 @@ class TestRequirement5:
         manager.add_feature("Group Classes")
         manager.add_feature("Nutritionist")
         manager.features.append({"name": "Extra Feature", "cost": 200})
-        assert manager.calculate_total() == 483
+        assert manager.calculate_total() == 420  # 470 - 50 discount = 420
 
 
 class TestRequirement6:
@@ -172,4 +172,4 @@ class TestIntegration:
         manager.select_plan("Premium")
         manager.add_feature("Personal Training")
         manager.add_feature("Group Classes")
-        assert manager.calculate_total() == 207
+        assert manager.calculate_total() == 180

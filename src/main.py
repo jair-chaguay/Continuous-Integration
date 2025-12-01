@@ -52,7 +52,7 @@ def ask_int(message):
         value = input(message).strip()
         if value.isdigit():
             return int(value)
-        print("Invalid number. Enter a valid one")
+        print("Invalid input")
 
 def run():
     """
