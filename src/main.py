@@ -18,7 +18,6 @@ from src.membership import MembershipManager
 
 
 def ask_confirmation(message="Are you sure? (Y/N): "):
-     
     """
     Ask the user to confirm an action using a Yes/No question.
 
@@ -28,7 +27,6 @@ def ask_confirmation(message="Are you sure? (Y/N): "):
     Returns:
         bool: True if the user confirmed with 'Y', False otherwise.
     """
-    
     while True:
         confirm = input(message).strip().lower()
         if confirm in ("y", "n"):
@@ -47,13 +45,13 @@ def ask_int(message):
     Returns:
         int: A valid integer entered by the user.
     """
-    
+
     while True:
         value = input(message).strip()
         if value.isdigit():
             return int(value)
         print("Invalid input")
-
+# pylint: disable=R0912
 def run():
     """
     Run the interactive command-line interface for membership management.
@@ -71,7 +69,6 @@ def run():
             - -1 if the program exits without calculation
     """
     manager = MembershipManager()
-
     while True:
         print("\n--- MENÚ ---")
         print("1. Select membership plan")
